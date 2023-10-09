@@ -4,6 +4,20 @@
 
 ## Setting Up An _OpMode_
 
+
+
+```java
+@TeleOp
+public class Main extends OpMode {
+    
+    @Override
+    public void init(){}
+    
+    @Override
+    public void loop(){}
+}
+```
+
 ## Motor Methods
 
 - `DcMotor.RunMode`: Controls the motor's run mode parameters
