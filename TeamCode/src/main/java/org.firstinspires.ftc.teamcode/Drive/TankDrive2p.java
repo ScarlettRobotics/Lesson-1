@@ -5,32 +5,40 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.*;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-
 /**
  * Lesson 1
  * Teaches the basics of using the FTC package.
  */
 @TeleOp(name = "TankDrive2p", group = "auto")
 public class TankDrive2p extends OpMode {
-    // Class variables
+    /* Initialization */
+    // Drivetrain init
     protected DcMotor motorLeft;
     protected DcMotor motorRight;
+    // Claw init
     protected Servo clawLeft;
     protected Servo clawRight;
-
-    // Gamepad variables
-    protected boolean pgamepad2a;
+    // Slide init
+    protected DcMotor motorSlide;
 
     @Override
     public void init() {
+        // hardwareMap drivetrain motors
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
-
+        // Set drivetrain RunModes
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        // hardwareMap claw servos
         clawLeft = hardwareMap.get(Servo.class, "clawLeft");
         clawRight = hardwareMap.get(Servo.class, "clawRight");
+
+        // hardwareMap slide motor
+        motorSlide = hardwareMap.get(DcMotor.class, "motorSlide");
+        // Set slide RunMode
+        motorSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         // Telemetry
         telemetry.addData("STATUS: ", "Initialized"); // the FTC equivalent to println()
         telemetry.addData("FTC Team #", "22531");
@@ -52,20 +60,26 @@ public class TankDrive2p extends OpMode {
             clawRight.setPosition(0.61);
         }
 
+        // Update slide
+        motorSlide.setPower(gamepad2.right_stick_y);
+
         // Telemetry
         telemetry(telemetry);
     }
 
     public void telemetry(Telemetry telemetry) {
-        telemetry.addData("\nCurrent class", "DualMotorDrive.java");
+        telemetry.addData("\nCurrent section", "Drivetrain");
         telemetry.addData("runMode", motorLeft.getMode());
         telemetry.addData("Left Power",
                 "%4.2f", motorLeft.getPower());
         telemetry.addData("Right Power",
                 "%4.2f", motorRight.getPower());
 
-        telemetry.addData("\nCurrent class", "ClawCore.java");
+        telemetry.addData("\nCurrent section", "Claw");
         telemetry.addData("Left claw position", clawLeft.getPosition());
         telemetry.addData("Right claw position", clawRight.getPosition());
+
+        telemetry.addData("\nCurrent section", "Slide");
+        telemetry.addData("Slide Y", motorSlide.getCurrentPosition());
     }
 }
