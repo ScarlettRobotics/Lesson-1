@@ -17,6 +17,15 @@ public class Main extends OpMode {
     public void loop(){}
 }
 ```
+```mermaid
+stateDiagram-v2
+[*] --> Still
+Still --> [*]
+Still --> Moving
+Moving --> Still
+Moving --> Crash
+Crash --> [*]
+```
 
 ## Motor Methods
 
