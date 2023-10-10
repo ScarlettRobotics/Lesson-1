@@ -26,7 +26,7 @@ public class Main extends OpMode {
 }
 ```
 
-- `@TeleOp`: Indicates that were are writing a program (`OpMode`) that we can later select on our driver hub.
+- `@TeleOp`: Indicates that we are writing a program (`OpMode`) that we can later select on our driver hub.
 - We then extend it to `OpMode` to inherit its properties and make an `OpMode` program of our own.
 - Before the methods, you will have to create the motor and servo objects.
 - Remember to place `@Override` above the void methods as we are coding a new program.
