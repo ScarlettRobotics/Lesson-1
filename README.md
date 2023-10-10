@@ -35,7 +35,7 @@ public class Main extends OpMode {
 - In the `loop()` method will be the code that will have to continuously run to move the robot.
   - Example: `DcMotor` values that will change based on the joystick movement. 
 
-  >***NOTE*** : You don't have to manually import each class from the FTC packages/libraries, as it will add itself when you write the code
+>***NOTE*** : You don't have to manually import each class from the FTC packages/libraries, as it will add itself when you write the code
 
 ## Motor Methods
 
