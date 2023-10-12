@@ -2,6 +2,8 @@
 
 > You can use Google to find this information or this [FTC Documentation](https://ftctechnh.github.io/ftc_app/doc/javadoc/index.html)
 
+To navigate to the Java file, go to TeamCode/src/main/java/org.firstinspires.ftc.teamcode.
+
 ## Setting Up An _OpMode_
 
 These are the steps the Robot will go through:
