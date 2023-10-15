@@ -26,13 +26,13 @@ public class TankDrive2p extends OpMode {
      */
     /* Initialization */
     // Drivetrain init
-    protected DcMotor motorLeft;
-    protected DcMotor motorRight;
+    protected DcMotor leftMotor;
+    protected DcMotor rightMotor;
     // Claw init
-    protected Servo clawLeft;
-    protected Servo clawRight;
+    protected Servo leftClaw;
+    protected Servo rightClaw;
     // Slide init
-    protected DcMotor motorSlide;
+    protected DcMotor slideMotor;
 
     /** @Override is required before using "init()".
      * This is where you will initialize all your declared variables.
@@ -46,25 +46,25 @@ public class TankDrive2p extends OpMode {
          * The second parameter identifies ObjectClass' name that was already set up in the driver hub.
          */
         // hardwareMap drivetrain motors
-        motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
-        motorRight = hardwareMap.get(DcMotor.class, "motorRight");
+        leftMotor = hardwareMap.get(DcMotor.class, "motorLeft");
+        rightMotor = hardwareMap.get(DcMotor.class, "motorRight");
         /** Before a DcMotor can be used, the RunMode must be set. Two are most common:
          * RUN_USING_ENCODER uses a double ranging from -1 to 1 to spin the motor in a specific direction.
          * RUN_TO_POSITION uses encoder values (positions of rotation) to move to specific positions.
          * For a list of additional RunModes, refer to https://ftctechnh.github.io/ftc_app/doc/javadoc/com/qualcomm/robotcore/hardware/DcMotor.RunMode.html
          */
         // Set drivetrain RunModes
-        motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // hardwareMap claw servos
-        clawLeft = hardwareMap.get(Servo.class, "clawLeft");
-        clawRight = hardwareMap.get(Servo.class, "clawRight");
+        leftClaw = hardwareMap.get(Servo.class, "clawLeft");
+        rightClaw = hardwareMap.get(Servo.class, "clawRight");
 
         // hardwareMap slide motor
-        motorSlide = hardwareMap.get(DcMotor.class, "motorSlide");
+        slideMotor = hardwareMap.get(DcMotor.class, "motorSlide");
         // Set slide RunMode
-        motorSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         /** telemetry.addData() is equivalent to System.out.println().
          * If two strings are inputted, the terminal output will appear as "{string1}: {string2}".
@@ -86,8 +86,8 @@ public class TankDrive2p extends OpMode {
          *      For a list of all inputs, refer to https://ftctechnh.github.io/ftc_app/doc/javadoc/com/qualcomm/robotcore/hardware/Gamepad.html
          */
         // Update drive system
-        motorLeft.setPower(gamepad1.left_stick_y);
-        motorRight.setPower(gamepad1.right_stick_y);
+        leftMotor.setPower(gamepad1.left_stick_y);
+        rightMotor.setPower(gamepad1.right_stick_y);
 
         /** setPosition() receives a double from 0 to 1 corresponding to the minimum and maximum position.
          * 2 significant digits are usually enough for servo tasks.
@@ -95,16 +95,16 @@ public class TankDrive2p extends OpMode {
          */
         // Update claw
         if (gamepad2.a) {
-            clawLeft.setPosition(0.595);
-            clawRight.setPosition(0.73);
+            leftClaw.setPosition(0.595);
+            rightClaw.setPosition(0.73);
         }
         if (gamepad2.b) {
-            clawLeft.setPosition(0.70);
-            clawRight.setPosition(0.61);
+            leftClaw.setPosition(0.70);
+            rightClaw.setPosition(0.61);
         }
 
         // Update slide
-        motorSlide.setPower(gamepad2.right_stick_y);
+        slideMotor.setPower(gamepad2.right_stick_y);
 
         // Telemetry
         telemetry(telemetry);
@@ -117,20 +117,20 @@ public class TankDrive2p extends OpMode {
          */
         telemetry.addData("\nCurrent section", "Drivetrain");
         /** .getMode() returns the RunMode of the DcMotor variable. */
-        telemetry.addData("runMode", motorLeft.getMode());
+        telemetry.addData("runMode", leftMotor.getMode());
         /** .getPower() returns the current power of the DcMotor variable. */
         telemetry.addData("Left Power",
-                "%4.2f", motorLeft.getPower());
+                "%4.2f", leftMotor.getPower());
         telemetry.addData("Right Power",
-                "%4.2f", motorRight.getPower());
+                "%4.2f", rightMotor.getPower());
 
         telemetry.addData("\nCurrent section", "Claw");
         /** .getPosition() returns the current position of the Servo variable. */
-        telemetry.addData("Left claw position", clawLeft.getPosition());
-        telemetry.addData("Right claw position", clawRight.getPosition());
+        telemetry.addData("Left claw position", leftClaw.getPosition());
+        telemetry.addData("Right claw position", rightClaw.getPosition());
 
         telemetry.addData("\nCurrent section", "Slide");
         /** .getCurrentPosition() returns the encoder value of the DcMotor variable. */
-        telemetry.addData("Slide Y", motorSlide.getCurrentPosition());
+        telemetry.addData("Slide Y", slideMotor.getCurrentPosition());
     }
 }
