@@ -46,8 +46,8 @@ public class TankDrive2p extends OpMode {
          * The second parameter identifies ObjectClass' name that was already set up in the driver hub.
          */
         // hardwareMap drivetrain motors
-        leftMotor = hardwareMap.get(DcMotor.class, "motorLeft");
-        rightMotor = hardwareMap.get(DcMotor.class, "motorRight");
+        leftMotor = hardwareMap.get(DcMotor.class, "left_motor");
+        rightMotor = hardwareMap.get(DcMotor.class, "right_motor");
         /** Before a DcMotor can be used, the RunMode must be set. Two are most common:
          * RUN_USING_ENCODER uses a double ranging from -1 to 1 to spin the motor in a specific direction.
          * RUN_TO_POSITION uses encoder values (positions of rotation) to move to specific positions.
@@ -58,11 +58,11 @@ public class TankDrive2p extends OpMode {
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // hardwareMap claw servos
-        leftClaw = hardwareMap.get(Servo.class, "clawLeft");
-        rightClaw = hardwareMap.get(Servo.class, "clawRight");
+        leftClaw = hardwareMap.get(Servo.class, "left_claw");
+        rightClaw = hardwareMap.get(Servo.class, "right_claw");
 
         // hardwareMap slide motor
-        slideMotor = hardwareMap.get(DcMotor.class, "motorSlide");
+        slideMotor = hardwareMap.get(DcMotor.class, "slide_motor");
         // Set slide RunMode
         slideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
